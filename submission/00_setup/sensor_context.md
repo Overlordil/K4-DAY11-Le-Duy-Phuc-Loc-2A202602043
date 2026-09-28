@@ -1,6 +1,5 @@
 # Sensor context
 
-- TODO — Rig: mô tả ngắn xe/camera gắn ở đâu theo hiểu biết của bạn từ ảnh (ADASIND không kèm tài liệu rig chi
-  tiết, ghi theo quan sát).
-- TODO — `ego_body` nhìn thấy ở đâu trong frame (góc capo, gương, tay lái...).
-- TODO — Vòng kính (lens circle) nằm ở vị trí nào trong ảnh, chiếm khoảng bao nhiêu phần khung hình.
+- Rig: camera được cầm trên tay của người ngồi sau xe máy
+- `ego_body`: Có thể nhìn thấy cơ thể người điều khiển, cánh tay và bàn tay phải, cùng một phần tay lái phương tiện, chủ yếu dọc theo mép phía dưới bên trái của frame. Vị trí phần ego body thay đổi nhẹ theo góc nhìn và chuyển động.
+- Vòng kính (lens circle): Biên tròn của ảnh fisheye nhìn thấy rất rõ và chiếm gần như toàn bộ khung hình. Vòng kính kéo sát đến các mép trái/phải và phần lớn chiều cao ảnh; phía ngoài vùng ảnh hữu dụng có các vùng tối.

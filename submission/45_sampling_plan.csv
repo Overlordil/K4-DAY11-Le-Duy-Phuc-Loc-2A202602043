@@ -1,9 +1,9 @@
 camera_id,slice_type,frames,risk,rationale
-front,normal,,TODO,TODO
-front,hard,,TODO,TODO
-rear,normal,,TODO,TODO
-rear,hard,,TODO,TODO
-left,normal,,TODO,TODO
-left,hard,,TODO,TODO
-right,normal,,TODO,TODO
-right,hard,,TODO,TODO
+front,normal,35,medium,Cung cấp mẫu baseline của cảnh thông thường trên camera front.
+front,hard,15,high,Ưu tiên các ca seam với camera khác, vùng rìa, ánh sáng khó hoặc tình huống dễ nhầm; hard được lấy nhiều hơn tỷ trọng population để tăng khả năng phát hiện failure mode.
+rear,normal,35,medium,Cung cấp mẫu baseline của cảnh thông thường trên camera rear.
+rear,hard,15,high,Ưu tiên các ca seam, vật khó quan sát, vùng rìa hoặc ánh sáng khó; hard được oversample để review các failure mode.
+left,normal,35,medium,Cung cấp mẫu baseline của cảnh thông thường trên camera left.
+left,hard,15,high,Ưu tiên các ca seam, vùng rìa và các tình huống hình học khó; hard được oversample để tìm lỗi cần adjudication.
+right,normal,35,medium,Cung cấp mẫu baseline của cảnh thông thường trên camera right.
+right,hard,15,high,Ưu tiên các ca seam, vùng rìa và các tình huống hình học khó; hard được oversample để tìm lỗi cần adjudication.

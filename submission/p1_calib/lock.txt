@@ -1,0 +1,9 @@
+round: calib
+slice: C0
+sha256: 117a671c384984e998f8a763e28ccedbacf76a0403f01872b7b5d163dce7d842
+code: 117A-671C
+locked_at: 2026-09-28T18:49:24+07:00
+shapes: box=6, polygon=3
+prefill_kept: 0
+prefill_edited: 0
+new: 6

@@ -8,11 +8,13 @@ không làm thay phần lý do.
 
 | camera_id | Hard case cần chọn | Vì sao dễ sai | Annotation space / calibration cần giữ | Cách review trước khi gọi là gold |
 |---|---|---|---|---|
-| front | TODO | TODO | TODO | TODO |
-| rear | TODO | TODO | TODO | TODO |
-| left | TODO | TODO | TODO | TODO |
-| right | TODO | TODO | TODO | TODO |
+| front | Vật ở vùng rìa, vật bị che, ca seam với camera left/right và các tình huống ánh sáng khó | Hình học fisheye ở vùng rìa có thể làm phần nhìn thấy của vật khó xác định; cùng một vật có thể xuất hiện ở camera khác với box khác | Giữ calibration của camera front và annotation trên ảnh fisheye gốc; không dùng box trên ảnh gốc để suy ngược thành annotation BEV | Ít nhất một người gán nhãn độc lập; người phân xử đối chiếu guideline đã ghi version, ảnh gốc và calibration; lưu lý do quyết định trước khi đưa mẫu vào gold |
+| rear | Vật nhỏ hoặc bị che, vật gần vùng rìa và ca seam ở góc sau xe | Phần nhìn thấy của object có thể không đầy đủ; cùng một object có thể xuất hiện trên hai camera với hình học khác nhau | Giữ calibration và annotation space của camera rear; phân biệt annotation trên ảnh gốc với annotation sau biến đổi BEV | Hai lượt review độc lập; ca bất đồng được adjudicate theo guideline version cụ thể; lưu decision và evidence trước khi chấp nhận vào gold |
+| left | Ca seam với front/rear, vật ở vùng rìa và tình huống ánh sáng hoặc hình học khó | Một object có thể xuất hiện đồng thời ở hai camera; zone/range trên hai camera có thể khác nhau và không tự chứng minh box nào đúng | Giữ calibration của camera left và annotation space trên ảnh fisheye gốc; không tự ghép hoặc xoá box cross-camera nếu chưa có policy | Review riêng annotation của camera left, sau đó review các ca seam cùng camera liên quan; chỉ đưa vào gold sau khi policy cross-camera được áp dụng và decision được lưu |
+| right | Ca seam với front/rear, vật ở vùng rìa và tình huống khó phân biệt phần nhìn thấy | Vùng chuyển tiếp có thể tạo hai box cho cùng một object; biến dạng và che khuất làm ranh giới object khó xác định | Giữ calibration của camera right và annotation space trên ảnh gốc; không coi annotation trên BEV là cùng câu hỏi với annotation trên fisheye | Review độc lập, kiểm hình học trên ảnh gốc, đối chiếu calibration và guideline; ca seam cần evidence và decision riêng trước khi đưa vào gold |
 
-- Khi nào cần refresh gold set (đổi camera, calibration hoặc rule): TODO
-- Một ca seam/cross-camera cần policy và evidence trước khi ghép hai box: TODO
-- Vì sao peer agreement hoặc quality report trên ảnh một camera chưa chứng minh gold set đúng cho cả bốn camera: TODO
+- Khi nào cần refresh gold set (đổi camera, calibration hoặc rule): Cần refresh các mẫu bị ảnh hưởng khi camera, calibration hoặc annotation rule thay đổi. Nếu thay đổi làm thay đổi cách xác định object, vùng nhìn thấy, seam hoặc annotation space thì không tiếp tục coi gold set cũ là reference cho cấu hình mới nếu chưa được review lại. Gold set cũng cần được xem lại khi guideline được cập nhật phiên bản.
+
+- Một ca seam/cross-camera cần policy và evidence trước khi ghép hai box: Khi cùng một vật xuất hiện đồng thời trên hai camera ở vùng seam với hai box khác nhau, không tự động gán đó là `DUPLICATE` và cũng không tự động ghép thành một box. Cần policy xác định khi nào giữ cả hai box, khi nào hợp nhất, hoặc khi nào để tầng downstream xử lý. Quyết định phải dựa trên evidence phù hợp như timestamp, calibration và output policy của hệ thống.
+
+- Vì sao peer agreement hoặc quality report trên ảnh một camera chưa chứng minh gold set đúng cho cả bốn camera: Bốn camera có góc nhìn, vùng rìa, seam và calibration khác nhau. Peer agreement trên một camera chỉ cho thấy mức nhất quán trong camera đó; quality report của một camera cũng không chứng minh rằng annotation space, calibration hoặc cross-camera policy đúng trên ba camera còn lại. Gold set cần được review theo từng camera và các trường hợp seam/cross-camera cần được kiểm chứng riêng.

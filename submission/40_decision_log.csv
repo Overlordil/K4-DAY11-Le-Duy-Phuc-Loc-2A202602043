@@ -1,1 +1,5 @@
 id,date,question,decision,rationale,status
+D01,2026-09-29,"adasind_062370.jpg R7 ThreeWheeler có phải object riêng?","Escalate QA adjudication","R7 nằm phần lớn trong box L2/R5; ảnh gốc cần xác nhận đây là object riêng hay reference box trùng trước khi tính missing.",escalated
+D02,2026-09-29,"adasind_062370.jpg R8 Truck có object đủ ngưỡng trong vùng hợp lệ không?","Escalate QA adjudication","Chỉ reference có R8; xác minh ảnh gốc và scope trước khi coi nhãn L bị thiếu hoặc reference đúng.",escalated
+D03,2026-09-29,"adasind_086220.jpg L3 Bike và M7 Car là object nào?","Escalate QA adjudication","L3 chồng vùng ThreeWheeler và M7 chỉ có ở model; chưa đủ căn cứ kết luận từ cell máy.",escalated
+D04,2026-09-29,"adasind_117120.jpg L6/M10 Truck có bị reference bỏ sót không?","Escalate QA adjudication","L6 và M10 khớp vùng nhưng R không có box; cần xác nhận object/class trên ảnh gốc trước khi kết luận lỗi reference.",escalated
